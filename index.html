@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kit de Estudo — Ed. Socioemocional 6º ano | Mosaico de Mim</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#14181c;color:#ecebe4;font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;font-size:18px;line-height:1.65}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px 90px}
+a{color:#2fb6a3}
+header.top{border-bottom:2px solid #e0864c;padding:24px 0 14px;text-align:center}
+.mast{margin:0;font-size:clamp(28px,6.5vw,52px);line-height:1.05;letter-spacing:.02em;color:#e0864c;text-transform:uppercase;font-weight:800}
+.mast .sub{display:block;font-size:.30em;letter-spacing:.22em;font-weight:400;margin-top:12px;color:#9aa2aa;text-transform:uppercase}
+.faixa{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;font-family:'Courier New',monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;border-top:1px solid #343b43;border-bottom:1px solid #343b43;margin-top:14px;padding:8px 0;color:#9aa2aa}
+.selo{display:inline-block;background:#e0864c;color:#14181c;font-family:'Courier New',monospace;font-size:11.5px;letter-spacing:.14em;padding:6px 13px;border-radius:3px;text-transform:uppercase;font-weight:700;margin-top:14px}
+nav.abas{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:16px 0 4px}
+nav.abas a{font-family:'Courier New',monospace;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:#ecebe4;border:1px solid #343b43;background:#1e2228;padding:9px 13px;border-radius:3px}
+nav.abas a.atual{background:#e0864c;color:#14181c;border-color:#e0864c;font-weight:700}
+nav.abas a:hover{background:#2fb6a3;color:#14181c;border-color:#2fb6a3}
+.painel{border:1px solid #343b43;background:#1e2228;padding:12px 14px;margin:18px 0 22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;border-radius:4px}
+.painel .status{font-family:'Courier New',monospace;font-size:12.5px;color:#9aa2aa}
+.painel .btns{display:flex;gap:7px;flex-wrap:wrap}
+button{font-family:'Courier New',monospace;font-size:13px;cursor:pointer;border:1px solid #343b43;background:#1e2228;color:#ecebe4;padding:9px 13px;border-radius:3px}
+button:hover{background:#2fb6a3;color:#14181c;border-color:#2fb6a3}
+button:disabled{opacity:.4;cursor:not-allowed}
+button.principal{background:#e0864c;color:#14181c;border-color:#e0864c;font-weight:700}
+input,select,textarea{font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif}
+.barra{height:14px;border:1px solid #343b43;background:#1e2228;border-radius:8px;overflow:hidden}
+.barra i{display:block;height:100%;background:linear-gradient(90deg,#e0864c,#2fb6a3);width:0;transition:width .4s}
+.progresso p{font-family:'Courier New',monospace;font-size:12.5px;margin:7px 0 22px;color:#9aa2aa}
+.aviso-box{font-family:'Courier New',monospace;font-size:13px;background:#1e2228;border:1px solid #343b43;border-left:4px solid #e0864c;padding:12px 14px;border-radius:4px;line-height:1.6}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.74);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.overlay.on{display:flex}
+.modal{background:#1e2228;border:2px solid #e0864c;max-width:440px;width:100%;padding:22px;border-radius:6px}
+.modal h3{margin:0 0 10px;font-size:21px;color:#e0864c}
+.modal p{margin:0 0 16px}
+.modal .acoes{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.rodape{border-top:2px solid #343b43;margin-top:34px;padding-top:16px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;font-family:'Courier New',monospace;font-size:12.5px;color:#9aa2aa}
+.rodape a{color:#ecebe4;text-decoration:none;border:1px solid #343b43;background:#1e2228;padding:10px 15px;border-radius:3px;text-transform:uppercase;letter-spacing:.06em}
+.rodape a:hover{background:#e0864c;color:#14181c;border-color:#e0864c}
+@media(max-width:620px){body{font-size:17px}}
+.q{border:1px solid #343b43;background:#1e2228;border-radius:5px;margin:0 0 18px;overflow:hidden}
+.q .cabq{display:flex;gap:10px;align-items:center;padding:12px 16px;background:#262b31;border-bottom:1px solid #343b43;flex-wrap:wrap}
+.q .nq{font-family:'Courier New',monospace;font-size:11.5px;letter-spacing:.12em;background:#e0864c;color:#14181c;padding:5px 10px;border-radius:3px;font-weight:700}
+.q .tag{font-family:'Courier New',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#14181c;background:#2fb6a3;padding:4px 9px;border-radius:3px}
+.q .val{margin-left:auto;font-family:'Courier New',monospace;font-size:11.5px;color:#9aa2aa}
+.q .enun{padding:16px 18px 6px;font-size:17.5px}
+.alts{padding:0 18px 16px;list-style:none;margin:0}
+.alts li{margin-bottom:8px}
+.alts label{display:flex;gap:10px;align-items:flex-start;border:1px solid #343b43;background:#14181c;border-radius:4px;padding:11px 13px;cursor:pointer;font-size:16.5px}
+.alts label:hover{border-color:#2fb6a3}
+.alts input{margin-top:5px;flex-shrink:0}
+.alts .letra{font-family:'Courier New',monospace;font-weight:700;color:#e0864c;flex-shrink:0}
+.alts label.certa{border-color:#2fb6a3;background:rgba(61,220,151,.14)}
+.alts label.errada{border-color:#343b43;background:rgba(255,255,255,.04);opacity:.85}
+.alts label.marcada{outline:2px solid #2fb6a3}
+.expl{font-size:15px;margin:6px 0 0;padding-left:26px;color:#9aa2aa;line-height:1.5}
+.expl.boa{color:#2fb6a3}
+.resultado{border:2px solid #e0864c;background:#1e2228;border-radius:6px;padding:20px;margin:22px 0;text-align:center}
+.resultado h2{margin:0 0 8px;color:#e0864c;font-size:26px}
+.resultado .cod{font-family:'Courier New',monospace;font-size:30px;letter-spacing:.14em;background:#14181c;border:2px dashed #e0864c;display:inline-block;padding:12px 22px;border-radius:5px;margin:10px 0;color:#e0864c;font-weight:700}
+.travagab{border:1px solid #343b43;background:#1e2228;border-radius:5px;padding:18px 20px;margin:20px 0}
+.travagab input{font-family:'Courier New',monospace;text-transform:uppercase;padding:9px 11px;border:1px solid #343b43;background:#14181c;color:#ecebe4;border-radius:4px;max-width:170px;font-size:16px}
+.avisoGab{color:#e0563f;font-size:14px;margin-left:8px;font-family:'Courier New',monospace}
+.modelo-disc{border:1px solid #2fb6a3;background:rgba(61,220,151,.10);border-radius:5px;padding:14px 16px;margin:8px 18px 16px}
+.modelo-disc b{color:#2fb6a3;display:block;margin-bottom:6px;font-family:'Courier New',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+
+.secao-tit{border-bottom:2px solid #e0864c;margin:34px 0 16px;padding-bottom:7px;font-size:25px;color:#e0864c}
+.tabela-wrap{overflow-x:auto}
+.postit{background:#f2dda0;color:#2a2410;border-radius:3px;box-shadow:3px 4px 0 rgba(0,0,0,.35);padding:16px 18px;margin:14px 0}
+.postit b{display:block;font-family:'Courier New',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.postit code{background:#fff;border:1px dashed #8a7a2a;padding:2px 7px;font-size:15px;border-radius:2px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:16px}
+.card{border:1px solid #343b43;background:#1e2228;border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
+.card .topo{padding:12px 15px;color:#14181c;font-family:'Courier New',monospace;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:700}
+.c1 .topo{background:#e0864c}.c2 .topo{background:#2fb6a3}.c3 .topo{background:#e8b84b}.c4 .topo{background:#e0864c}
+.card .corpo{padding:15px;flex:1}
+.card h3{margin:0 0 8px;font-size:20px;color:#ecebe4}
+.card p{margin:0 0 9px;font-size:16px}
+.card ul{margin:0;padding-left:19px;font-size:15.5px}.card li{margin-bottom:4px}
+.card .ir{display:block;text-align:center;text-decoration:none;color:#14181c;padding:12px;font-family:'Courier New',monospace;font-size:13px;letter-spacing:.09em;text-transform:uppercase;font-weight:700}
+.c1 .ir{background:#e0864c}.c2 .ir{background:#2fb6a3}.c3 .ir{background:#e8b84b}.c4 .ir{background:#e0864c}
+.card .ir:hover{filter:brightness(1.18)}
+.escopo{font-family:'Courier New',monospace;font-size:13.5px;background:#1e2228;border:1px solid #343b43;border-left:4px solid #e0864c;padding:12px 14px;border-radius:4px;line-height:1.7}
+.chamada{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:18px;border:1px solid #343b43;background:#1e2228;padding:18px 20px;margin:20px 0 28px;border-radius:6px}
+.chamada h2{margin:0 0 8px;font-size:22px;color:#e0864c}
+table.cr{width:100%;border-collapse:collapse;font-size:16.5px;background:#1e2228}
+table.cr th,table.cr td{border-bottom:1px solid #343b43;padding:11px 13px;text-align:left;vertical-align:top}
+table.cr th{background:#262b31;font-family:'Courier New',monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#e0864c}
+#relPais input{padding:8px 10px;border:1px solid #8a7a2a;border-radius:3px;font-family:'Courier New',monospace;text-transform:uppercase;max-width:165px}
+#relPais button{padding:8px 14px;border:0;border-radius:3px;background:#2a2410;color:#f5efdc;cursor:pointer;font-family:'Courier New',monospace}
+#relCorpo table{width:100%;border-collapse:collapse;font-size:15px;margin-top:10px;background:rgba(255,255,255,.5)}
+#relCorpo th,#relCorpo td{border:1px solid #8a7a2a;padding:7px 9px;text-align:left;vertical-align:top}
+</style>
+</head><body>
+<div class="wrap">
+<header class="top">
+  <h1 class="mast">Mosaico de Mim<span class="sub">Kit de Estudo · Ed. Socioemocional 6º ano · Prova 19/10</span></h1>
+  <div class="faixa"><span>6º ano · Ed. Socioemocional</span><span>·</span><span>Módulos 6 e 7</span><span>·</span><span>Projeto de Vida · Autoconhecimento</span></div>
+  <p style="margin:0"><span class="selo">Guia de Estudo</span></p>
+</header>
+<nav class="abas"><a href="leitura-guiada.html">📖 1. Leitura Guiada</a><a href="quiz.html">🎯 2. Quiz</a><a href="resumo.html">🗺️ 3. Resumo</a><a href="simulado.html">📝 4. Simulado</a><a href="index.html" class="atual">🏠 Início</a></nav>
+
+<div class="chamada">
+  <div><h2>🧩 O mosaico desta prova</h2><p>Quatro materiais, na ordem certa de estudo. Cada um salva sozinho o que o jovem aprendiz responde — dá para fechar a página e voltar depois sem perder nada.</p><p>Não precisa fazer tudo de uma vez: o cronograma abaixo divide em etapas.</p></div>
+  <div><div class="escopo"><b>CONTEÚDO DA AVALIAÇÃO</b><br>Prova de <b>19/10</b> (segunda-feira)<br><b>Módulo 6</b> — Projeto de Vida (Lições 1 e 2)<br><b>Módulo 7</b> — Autoconhecimento (Lições 1 e 2)<br>Livro <i>Sentir e Pensar</i> (p. 60-69 e 76-85)</div></div>
+</div>
+
+<h2 class="secao-tit">📚 Os quatro materiais — nesta ordem</h2>
+<div class="cards">
+  <div class="card c1"><div class="topo"><span>Etapa 1</span><span>📖</span></div>
+    <div class="corpo"><h3>Leitura Guiada</h3><p>4 painéis do mosaico que abrem um de cada vez. Em cada um o jovem aprendiz <b>escreve</b> 3 respostas e só depois vê a resposta modelo.</p>
+    <ul><li>Valores e identidade (Mód. 6 · L1)</li><li>Profissões, necessidades e papéis (Mód. 6 · L2)</li><li>Autoconhecimento, cultura e recursos (Mód. 7 · L1)</li><li>O eu e o outro: amizade, comunicação e fofoca (Mód. 7 · L2)</li><li>10 pegadinhas + tabela de cobertura</li></ul></div><a class="ir" href="leitura-guiada.html">Começar por aqui →</a></div>
+
+  <div class="card c2"><div class="topo"><span>Etapa 2</span><span>🎯</span></div>
+    <div class="corpo"><h3>Quiz</h3><p>15 questões de múltipla escolha para testar o que ficou logo depois da leitura.</p>
+    <ul><li>Responder todas antes de enviar</li><li>Código <b>MED-XX-YY</b> ao final</li><li>Gabarito comentado: certa em verde, erradas explicadas</li></ul></div>
+    <a class="ir" href="quiz.html">Fazer o quiz →</a></div>
+
+  <div class="card c3"><div class="topo"><span>Etapa 3</span><span>🗺️</span></div>
+    <div class="corpo"><h3>Resumo</h3><p>Tudo em cartas que viram, quadros comparativos e post-its — para fechar as lacunas que o quiz mostrou.</p>
+    <ul><li>Visão geral dos 2 módulos</li><li>Cartas que viram: recursos, cativar, a ordem dos valores…</li><li>Quadros: profissões × necessidades e cochicho × fofoca</li><li>Glossário e os últimos 5 minutos antes da prova</li></ul></div><a class="ir" href="resumo.html">Revisar →</a></div>
+
+  <div class="card c4"><div class="topo"><span>Etapa 4</span><span>📝</span></div>
+    <div class="corpo"><h3>Simulado</h3><p>25 questões no formato de prova.</p>
+    <ul><li>22 de múltipla escolha + 3 de análise de afirmações (I, II, III, IV)</li><li>Código <b>SIM-XX-YY</b> ao final</li><li>Gabarito comentado questão por questão</li></ul></div>
+    <a class="ir" href="simulado.html">Valendo! →</a></div>
+</div>
+
+<h2 class="secao-tit">🗓️ Cronograma sugerido</h2>
+<div class="tabela-wrap"><table class="cr">
+<thead><tr><th>Quando</th><th>O que fazer</th></tr></thead><tbody>
+<tr><td><b>Dia 1</b></td><td>📖 Leitura Guiada — Painéis 1 e 2 (Módulo 6: valores, profissões e papéis)</td></tr>
+<tr><td><b>Dia 2</b></td><td>📖 Leitura Guiada — Painéis 3 e 4 (Módulo 7: autoconhecimento e o eu e o outro) → depois 🎯 Quiz</td></tr>
+<tr><td><b>Dia 3</b></td><td>🗺️ Resumo, focando no que errou no Quiz</td></tr>
+<tr><td><b>Véspera (18/10)</b></td><td>📝 Simulado inteiro, sem consultar. Conferir o gabarito junto com a mãe.</td></tr>
+</tbody></table></div>
+
+<h2 class="secao-tit">👩 Recado para a mãe</h2>
+<div class="postit">
+  <b>📌 Como funcionam os códigos de liberação</b>
+  O gabarito comentado do Quiz e do Simulado só abre depois que o <b>código</b> for digitado. Ele aparece na tela assim que a criança
+  envia as respostas, no formato <code>MED-XX-YY</code> (quiz) e <code>SIM-XX-YY</code> (simulado). Os dois números do meio são a
+  <b>quantidade de acertos</b> — dá para saber como ela foi antes mesmo de abrir o gabarito, e ela não consegue espiar as respostas antes de terminar.<br><br>
+  Cada material tem os botões <b>📥 Exportar / 📤 Importar / 🗑️ Zerar tudo</b>, caso queira guardar o progresso ou recomeçar do zero.
+  O código fixo da família é <code>PAIS-77</code> e abre o relatório abaixo a qualquer momento.
+</div>
+
+<h2 class="secao-tit">📊 Relatório para os pais</h2>
+<div class="postit" id="relPais">
+  <b>🔒 Área dos pais — protegida por código</b>
+  <div id="relTrava">
+    <p style="margin:0 0 10px">Digite um código de liberação para abrir: o <code>MED-…</code> do quiz, o <code>SIM-…</code> do simulado, ou o código da família <code>PAIS-77</code>.</p>
+    <input id="relCod" placeholder="PAIS-77">
+    <button id="relAbrir">Abrir relatório</button>
+    <span id="relAviso" style="color:#e0563f;font-size:14px"></span>
+  </div>
+  <div id="relCorpo" style="display:none"></div>
+</div>
+
+<div class="rodape"><span>Kit de estudo produzido em casa · Fonte: slides das aulas (livro &quot;Sentir e Pensar — Educação Socioemocional&quot;), Módulos 6 e 7</span><a href="leitura-guiada.html">📖 Começar</a></div>
+
+</div>
+<div class="overlay" id="overlay"><div class="modal">
+  <h3 id="mTit">Aviso</h3><p id="mTxt"></p>
+  <div class="acoes"><button id="mNao" style="display:none">Cancelar</button>
+  <button class="principal" id="mSim">Entendi</button></div>
+</div></div>
+<script>function aviso(t,msg,onSim,comCancelar){
+  document.getElementById('mTit').textContent=t;document.getElementById('mTxt').textContent=msg;
+  document.getElementById('mNao').style.display=comCancelar?'inline-block':'none';
+  var ov=document.getElementById('overlay'); ov.classList.add('on');
+  document.getElementById('mSim').onclick=function(){ov.classList.remove('on'); if(onSim)onSim();};
+  document.getElementById('mNao').onclick=function(){ov.classList.remove('on');};
+}</script>
+<script>(function(){
+var PAIS='PAIS-77', KB='socioemo6sj_mod67_v1';
+function ler(k){try{return JSON.parse(localStorage.getItem(k)||'{}')}catch(e){return {}}}
+function codOk(v){
+  v=(v||'').trim().toUpperCase();
+  if(v===PAIS)return true;
+  var q=ler(KB+'_quiz_v1'),si=ler(KB+'_simulado_v1');
+  return (q.codigo&&v===q.codigo)||(si.codigo&&v===si.codigo);
+}
+function montar(){
+  var lg=ler(KB+'_leituraguiada_v1'), qz=ler(KB+'_quiz_v1'), rs=ler(KB+'_resumo_v1'), si=ler(KB+'_simulado_v1');
+  var NB=4, NQ=15, NS=25, NSEC=7;
+  var h='<div style="overflow-x:auto"><table><thead><tr><th>Material</th><th>Resultado</th><th>Atenção</th></tr></thead><tbody>';
+  var bl=0,i; for(i=1;i<=NB;i++){if(lg.feito&&lg.feito[i])bl++;}
+  var verm=[]; if(lg.transcrita){for(var k in lg.transcrita){if(lg.transcrita[k])verm.push(k.replace('-','·'));}}
+  var rev=0; if(lg.chk){for(var k2 in lg.chk){(lg.chk[k2]||[]).forEach(function(v){if(v===0)rev++;});}}
+  var obs=(verm.length?('🔴 '+verm.length+' resposta(s) copiada(s) do texto (painel·pergunta: '+verm.join(', ')+'). '):'')+
+          (rev?('🔁 '+rev+' ponto(s) do checklist marcados como "não". '):'');
+  h+='<tr><td><b>📖 Leitura Guiada</b></td><td>'+bl+' de '+NB+' painéis concluídos</td><td>'+(obs||'—')+'</td></tr>';
+  function res(S2,tot){ if(!S2.enviado)return 'ainda não enviado';
+    var a=(S2.codigo||'').slice(4,6); return a+' acertos de '+tot+' · código '+(S2.codigo||''); }
+  h+='<tr><td><b>🎯 Quiz</b></td><td>'+res(qz,NQ)+'</td><td>'+(qz.enviado&&qz.liberado?'gabarito já aberto':'—')+'</td></tr>';
+  var c=0; if(rs.check){for(var x in rs.check){if(rs.check[x])c++;}}
+  h+='<tr><td><b>🗺️ Resumo</b></td><td>'+c+' de '+NSEC+' seções revisadas · leu até '+(rs.rolagem||0)+'% da página</td><td>'+(rs.notas?'fez anotações próprias ✍️':'—')+'</td></tr>';
+  h+='<tr><td><b>📝 Simulado</b></td><td>'+res(si,NS)+'</td><td>'+(si.enviado&&si.liberado?'gabarito já aberto':'—')+'</td></tr>';
+  h+='</tbody></table></div>';
+  h+='<p style="margin:10px 0 0;font-size:14.5px">Os detalhes (respostas em vermelho, checklist, lista “para revisar”) aparecem dentro da própria Leitura Guiada. O botão 📥 Exportar de cada material gera o arquivo completo.</p>';
+  document.getElementById('relCorpo').innerHTML=h;
+}
+document.getElementById('relAbrir').onclick=function(){
+  if(codOk(document.getElementById('relCod').value)){
+    document.getElementById('relTrava').style.display='none';
+    montar(); document.getElementById('relCorpo').style.display='block';
+  }else{ document.getElementById('relAviso').textContent=' ❌ Código incorreto.'; }
+};
+})();</script>
+</body></html>

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mosaico de Mim — Simulado | Ed. Socioemocional 6º ano</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#14181c;color:#ecebe4;font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;font-size:18px;line-height:1.65}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px 90px}
+a{color:#2fb6a3}
+header.top{border-bottom:2px solid #e0864c;padding:24px 0 14px;text-align:center}
+.mast{margin:0;font-size:clamp(28px,6.5vw,52px);line-height:1.05;letter-spacing:.02em;color:#e0864c;text-transform:uppercase;font-weight:800}
+.mast .sub{display:block;font-size:.30em;letter-spacing:.22em;font-weight:400;margin-top:12px;color:#9aa2aa;text-transform:uppercase}
+.faixa{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;font-family:'Courier New',monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;border-top:1px solid #343b43;border-bottom:1px solid #343b43;margin-top:14px;padding:8px 0;color:#9aa2aa}
+.selo{display:inline-block;background:#e0864c;color:#14181c;font-family:'Courier New',monospace;font-size:11.5px;letter-spacing:.14em;padding:6px 13px;border-radius:3px;text-transform:uppercase;font-weight:700;margin-top:14px}
+nav.abas{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:16px 0 4px}
+nav.abas a{font-family:'Courier New',monospace;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:#ecebe4;border:1px solid #343b43;background:#1e2228;padding:9px 13px;border-radius:3px}
+nav.abas a.atual{background:#e0864c;color:#14181c;border-color:#e0864c;font-weight:700}
+nav.abas a:hover{background:#2fb6a3;color:#14181c;border-color:#2fb6a3}
+.painel{border:1px solid #343b43;background:#1e2228;padding:12px 14px;margin:18px 0 22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;border-radius:4px}
+.painel .status{font-family:'Courier New',monospace;font-size:12.5px;color:#9aa2aa}
+.painel .btns{display:flex;gap:7px;flex-wrap:wrap}
+button{font-family:'Courier New',monospace;font-size:13px;cursor:pointer;border:1px solid #343b43;background:#1e2228;color:#ecebe4;padding:9px 13px;border-radius:3px}
+button:hover{background:#2fb6a3;color:#14181c;border-color:#2fb6a3}
+button:disabled{opacity:.4;cursor:not-allowed}
+button.principal{background:#e0864c;color:#14181c;border-color:#e0864c;font-weight:700}
+input,select,textarea{font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif}
+.barra{height:14px;border:1px solid #343b43;background:#1e2228;border-radius:8px;overflow:hidden}
+.barra i{display:block;height:100%;background:linear-gradient(90deg,#e0864c,#2fb6a3);width:0;transition:width .4s}
+.progresso p{font-family:'Courier New',monospace;font-size:12.5px;margin:7px 0 22px;color:#9aa2aa}
+.aviso-box{font-family:'Courier New',monospace;font-size:13px;background:#1e2228;border:1px solid #343b43;border-left:4px solid #e0864c;padding:12px 14px;border-radius:4px;line-height:1.6}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.74);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.overlay.on{display:flex}
+.modal{background:#1e2228;border:2px solid #e0864c;max-width:440px;width:100%;padding:22px;border-radius:6px}
+.modal h3{margin:0 0 10px;font-size:21px;color:#e0864c}
+.modal p{margin:0 0 16px}
+.modal .acoes{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.rodape{border-top:2px solid #343b43;margin-top:34px;padding-top:16px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;font-family:'Courier New',monospace;font-size:12.5px;color:#9aa2aa}
+.rodape a{color:#ecebe4;text-decoration:none;border:1px solid #343b43;background:#1e2228;padding:10px 15px;border-radius:3px;text-transform:uppercase;letter-spacing:.06em}
+.rodape a:hover{background:#e0864c;color:#14181c;border-color:#e0864c}
+@media(max-width:620px){body{font-size:17px}}
+.q{border:1px solid #343b43;background:#1e2228;border-radius:5px;margin:0 0 18px;overflow:hidden}
+.q .cabq{display:flex;gap:10px;align-items:center;padding:12px 16px;background:#262b31;border-bottom:1px solid #343b43;flex-wrap:wrap}
+.q .nq{font-family:'Courier New',monospace;font-size:11.5px;letter-spacing:.12em;background:#e0864c;color:#14181c;padding:5px 10px;border-radius:3px;font-weight:700}
+.q .tag{font-family:'Courier New',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#14181c;background:#2fb6a3;padding:4px 9px;border-radius:3px}
+.q .val{margin-left:auto;font-family:'Courier New',monospace;font-size:11.5px;color:#9aa2aa}
+.q .enun{padding:16px 18px 6px;font-size:17.5px}
+.alts{padding:0 18px 16px;list-style:none;margin:0}
+.alts li{margin-bottom:8px}
+.alts label{display:flex;gap:10px;align-items:flex-start;border:1px solid #343b43;background:#14181c;border-radius:4px;padding:11px 13px;cursor:pointer;font-size:16.5px}
+.alts label:hover{border-color:#2fb6a3}
+.alts input{margin-top:5px;flex-shrink:0}
+.alts .letra{font-family:'Courier New',monospace;font-weight:700;color:#e0864c;flex-shrink:0}
+.alts label.certa{border-color:#2fb6a3;background:rgba(61,220,151,.14)}
+.alts label.errada{border-color:#343b43;background:rgba(255,255,255,.04);opacity:.85}
+.alts label.marcada{outline:2px solid #2fb6a3}
+.expl{font-size:15px;margin:6px 0 0;padding-left:26px;color:#9aa2aa;line-height:1.5}
+.expl.boa{color:#2fb6a3}
+.resultado{border:2px solid #e0864c;background:#1e2228;border-radius:6px;padding:20px;margin:22px 0;text-align:center}
+.resultado h2{margin:0 0 8px;color:#e0864c;font-size:26px}
+.resultado .cod{font-family:'Courier New',monospace;font-size:30px;letter-spacing:.14em;background:#14181c;border:2px dashed #e0864c;display:inline-block;padding:12px 22px;border-radius:5px;margin:10px 0;color:#e0864c;font-weight:700}
+.travagab{border:1px solid #343b43;background:#1e2228;border-radius:5px;padding:18px 20px;margin:20px 0}
+.travagab input{font-family:'Courier New',monospace;text-transform:uppercase;padding:9px 11px;border:1px solid #343b43;background:#14181c;color:#ecebe4;border-radius:4px;max-width:170px;font-size:16px}
+.avisoGab{color:#e0563f;font-size:14px;margin-left:8px;font-family:'Courier New',monospace}
+.modelo-disc{border:1px solid #2fb6a3;background:rgba(61,220,151,.10);border-radius:5px;padding:14px 16px;margin:8px 18px 16px}
+.modelo-disc b{color:#2fb6a3;display:block;margin-bottom:6px;font-family:'Courier New',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.q .enun ul.afirm{list-style:none;padding:0;margin:8px 0 2px}.q .enun ul.afirm li{background:#262b31;border:1px solid #343b43;border-radius:4px;padding:8px 12px;margin-bottom:6px;font-size:16.5px}</style>
+</head><body>
+<div class="wrap">
+<header class="top">
+  <h1 class="mast">Mosaico de Mim<span class="sub">Kit de Estudo · Ed. Socioemocional 6º ano · Prova 19/10</span></h1>
+  <div class="faixa"><span>6º ano · Ed. Socioemocional</span><span>·</span><span>Módulos 6 e 7</span><span>·</span><span>Simulado da prova</span></div>
+  <p style="margin:0"><span class="selo">Etapa 4 — Simulado</span></p>
+</header>
+<nav class="abas"><a href="leitura-guiada.html">📖 1. Leitura Guiada</a><a href="quiz.html">🎯 2. Quiz</a><a href="resumo.html">🗺️ 3. Resumo</a><a href="simulado.html" class="atual">📝 4. Simulado</a><a href="index.html">🏠 Início</a></nav>
+
+<div class="painel">
+  <div class="status" id="status">Carregando seu progresso…</div>
+  <div class="btns">
+    <button id="btExportar">📥 Exportar</button>
+    <button id="btImportar">📤 Importar</button>
+    <button id="btZerar">🗑️ Zerar tudo</button>
+  </div>
+</div>
+<input type="file" id="arquivo" accept="application/json" style="display:none">
+
+<div class="progresso"><div class="barra"><i id="barra"></i></div><p id="txtProg"></p></div>
+<p class="aviso-box"><b>25 questões</b> no estilo da prova, de compreensão dos conceitos e das situações (inclui 3 de <b>análise de afirmações</b>: I, II, III, IV). Responda todas e clique em <b>Enviar</b>: aparece o código <b>SIM-XX-YY</b>. O gabarito comentado só abre com esse código (ou com o código da família).</p>
+<div id="qs"></div>
+<div class="resultado" id="resultado" style="display:none"></div>
+<div style="text-align:center;margin:22px 0"><button class="principal" id="btEnviar" style="font-size:17px;padding:14px 28px">📤 Enviar respostas</button></div>
+<div class="travagab">
+  <p style="margin:0 0 10px"><b>🔒 Gabarito comentado</b> — digite o código que apareceu depois do envio (ou o código da família) para abrir.</p>
+  <input id="codGab" placeholder="SIM-00-XX"><button id="btGab">Abrir gabarito</button><span class="avisoGab" id="avGab"></span>
+</div>
+<div class="rodape"><span>Voltar ao início →</span><a href="index.html">🏠 Página inicial</a></div>
+
+</div>
+<div class="overlay" id="overlay"><div class="modal">
+  <h3 id="mTit">Aviso</h3><p id="mTxt"></p>
+  <div class="acoes"><button id="mNao" style="display:none">Cancelar</button>
+  <button class="principal" id="mSim">Entendi</button></div>
+</div></div>
+<script>function aviso(t,msg,onSim,comCancelar){
+  document.getElementById('mTit').textContent=t;document.getElementById('mTxt').textContent=msg;
+  document.getElementById('mNao').style.display=comCancelar?'inline-block':'none';
+  var ov=document.getElementById('overlay'); ov.classList.add('on');
+  document.getElementById('mSim').onclick=function(){ov.classList.remove('on'); if(onSim)onSim();};
+  document.getElementById('mNao').onclick=function(){ov.classList.remove('on');};
+}</script>
+<script>var QS=[{"n": 1, "tipo": "mc", "tag": "Valores", "t": "<p>No contexto da matéria, valores pessoais são:</p>", "o": [{"id": "a", "txt": "Aquilo que a pessoa considera importante e que influencia como ela pensa, sente e age.", "ex": "Correto."}, {"id": "b", "txt": "Somente o dinheiro que a família tem.", "ex": "Valor não é posse material."}, {"id": "c", "txt": "As notas tiradas nas provas.", "ex": "Não corresponde."}, {"id": "d", "txt": "Regras que valem só na escola.", "ex": "Valores vão além das regras escolares."}], "c": "a"}, {"n": 2, "tipo": "mc", "tag": "Sistema de valores", "t": "<p>Duas pessoas vivem a mesma situação e escolhem de formas diferentes. Isso acontece porque:</p>", "o": [{"id": "a", "txt": "Cada uma organiza o seu sistema de valores de um jeito.", "ex": "Correto."}, {"id": "b", "txt": "Uma delas não tem valores.", "ex": "Todos constroem valores."}, {"id": "c", "txt": "Os valores são iguais para todos.", "ex": "Cada um tem o seu sistema."}, {"id": "d", "txt": "Escolhas não dependem de valores.", "ex": "Os valores orientam as escolhas."}], "c": "a"}, {"n": 3, "tipo": "mc", "tag": "Valores mudam", "t": "<p>Sobre a mudança dos valores, é correto afirmar:</p>", "o": [{"id": "a", "txt": "Podem mudar ao longo da vida, conforme novas experiências e relações.", "ex": "Correto."}, {"id": "b", "txt": "São fixos e nunca mudam.", "ex": "Não são completamente fixos."}, {"id": "c", "txt": "Mudam de minuto em minuto, como o humor.", "ex": "Mudança de valor não é humor passageiro."}, {"id": "d", "txt": "Não têm relação com as experiências.", "ex": "As experiências ajudam a transformá-los."}], "c": "a"}, {"n": 4, "tipo": "mc", "tag": "Sequência", "t": "<p>A ordem correta de como os valores orientam as decisões é:</p>", "o": [{"id": "a", "txt": "Valores → atitudes → escolhas → consequências.", "ex": "Correto."}, {"id": "b", "txt": "Escolhas → consequências → valores → atitudes.", "ex": "Ordem trocada."}, {"id": "c", "txt": "Consequências → valores → escolhas → atitudes.", "ex": "Ordem trocada."}, {"id": "d", "txt": "Atitudes → escolhas → consequências → valores.", "ex": "Ordem trocada."}], "c": "a"}, {"n": 5, "tipo": "mc", "tag": "Valores e identidade", "t": "<p>Os valores se ligam à identidade porque:</p>", "o": [{"id": "a", "txt": "Perguntar “o que é importante para mim?” ajuda a responder “quem eu sou?”.", "ex": "Correto."}, {"id": "b", "txt": "Identidade é só o nome e o documento da pessoa.", "ex": "Identidade aqui é mais ampla que o documento."}, {"id": "c", "txt": "Valores não têm nada a ver com quem somos.", "ex": "Os valores participam da identidade."}, {"id": "d", "txt": "Identidade é igual em todas as pessoas.", "ex": "A identidade é construída e própria de cada um."}], "c": "a"}, {"n": 6, "tipo": "mc", "tag": "Onde aparecem", "t": "<p>É um exemplo de valor na VIDA SOCIAL:</p>", "o": [{"id": "a", "txt": "Posicionar-se sobre justiça social, direitos humanos e respeito às minorias.", "ex": "Correto: a vida social envolve posicionamentos sobre justiça e direitos."}, {"id": "b", "txt": "Escolher o que comer no café da manhã.", "ex": "Isso é do dia a dia pessoal."}, {"id": "c", "txt": "Decidir a cor do próprio quarto.", "ex": "Isso é escolha pessoal."}, {"id": "d", "txt": "Guardar um brinquedo favorito.", "ex": "Isso é do campo pessoal."}], "c": "a"}, {"n": 7, "tipo": "mc", "tag": "Trabalho com significado", "t": "<p>Segundo o texto, o trabalho pode ir além do salário quando:</p>", "o": [{"id": "a", "txt": "Tem significado e a pessoa percebe que contribui para outras pessoas.", "ex": "Correto: gera satisfação e realização."}, {"id": "b", "txt": "É feito sem nenhum propósito.", "ex": "O texto valoriza o significado."}, {"id": "c", "txt": "Não ajuda ninguém.", "ex": "O trabalho com significado contribui para outros."}, {"id": "d", "txt": "Rende dinheiro sem sentido algum.", "ex": "O ponto não é só o dinheiro."}], "c": "a"}, {"n": 8, "tipo": "mc", "tag": "Profissão × necessidade", "t": "<p>A profissão da área da Educação atende principalmente à necessidade de:</p>", "o": [{"id": "a", "txt": "Desenvolvimento das novas gerações.", "ex": "Correto."}, {"id": "b", "txt": "Cuidado médico dos doentes.", "ex": "Isso é da Saúde."}, {"id": "c", "txt": "Transformação social feita por ONGs.", "ex": "Isso é das ONGs."}, {"id": "d", "txt": "Construção de pontes e estradas.", "ex": "Isso se liga a outras áreas."}], "c": "a"}, {"n": 9, "tipo": "mc", "tag": "Profissão × necessidade", "t": "<p>O Serviço social atende especialmente à necessidade de:</p>", "o": [{"id": "a", "txt": "Apoio a pessoas em situação vulnerável.", "ex": "Correto."}, {"id": "b", "txt": "Ensino de língua estrangeira.", "ex": "Isso é da Educação."}, {"id": "c", "txt": "Cuidado dos dentes.", "ex": "Isso é de uma área da Saúde."}, {"id": "d", "txt": "Produção de energia elétrica.", "ex": "Não corresponde."}], "c": "a"}, {"n": 10, "tipo": "mc", "tag": "Profissão × necessidade", "t": "<p>As políticas públicas atendem à necessidade de:</p>", "o": [{"id": "a", "txt": "Levar serviços e ações para a comunidade.", "ex": "Correto."}, {"id": "b", "txt": "Vender produtos em lojas.", "ex": "Não corresponde ao conceito."}, {"id": "c", "txt": "Cuidar apenas de uma família.", "ex": "Políticas públicas alcançam a comunidade."}, {"id": "d", "txt": "Transformar a cultura de um país sozinhas.", "ex": "Não corresponde."}], "c": "a"}, {"n": 11, "tipo": "mc", "tag": "Mundo do trabalho", "t": "<p>O que pode transformar as profissões e fazer surgir novas, segundo o texto?</p>", "o": [{"id": "a", "txt": "A tecnologia, as mudanças climáticas e as novas necessidades.", "ex": "Correto."}, {"id": "b", "txt": "Apenas a vontade de uma pessoa.", "ex": "É um conjunto de fatores da sociedade."}, {"id": "c", "txt": "Nada: as profissões nunca mudam.", "ex": "O mundo do trabalho muda."}, {"id": "d", "txt": "Somente o acaso, sem nenhuma tendência.", "ex": "Dá para observar tendências."}], "c": "a"}, {"n": 12, "tipo": "mc", "tag": "Mundo do trabalho", "t": "<p>É uma área que PODE crescer no futuro, segundo o texto:</p>", "o": [{"id": "a", "txt": "Energias renováveis e sustentabilidade urbana.", "ex": "Correto: também IA, bem-estar digital, tecnologias médicas etc."}, {"id": "b", "txt": "Nenhuma área nova vai surgir.", "ex": "O texto cita novas áreas."}, {"id": "c", "txt": "Apenas profissões que já existem há séculos.", "ex": "Podem surgir profissões novas."}, {"id": "d", "txt": "Só trabalhos sem uso de tecnologia.", "ex": "A tecnologia tende a crescer."}], "c": "a"}, {"n": 13, "tipo": "mc", "tag": "Papéis sociais", "t": "<p>Sobre papéis sociais, é correto dizer:</p>", "o": [{"id": "a", "txt": "A mesma pessoa pode viver vários papéis, cada um com responsabilidades diferentes.", "ex": "Correto."}, {"id": "b", "txt": "Cada pessoa tem apenas um papel a vida inteira.", "ex": "A pessoa vive vários papéis."}, {"id": "c", "txt": "Papel social é sinônimo de salário.", "ex": "Não é salário."}, {"id": "d", "txt": "Só profissionais têm papéis sociais.", "ex": "Estudantes, filhos e amigos também têm papéis."}], "c": "a"}, {"n": 14, "tipo": "mc", "tag": "Autoconhecimento", "t": "<p>Autoconhecimento pode ser definido como:</p>", "o": [{"id": "a", "txt": "O processo de conhecer e compreender melhor quem somos.", "ex": "Correto."}, {"id": "b", "txt": "Decorar conteúdos para a prova.", "ex": "Não corresponde."}, {"id": "c", "txt": "Conhecer só a vida dos colegas.", "ex": "É sobre si mesmo."}, {"id": "d", "txt": "Ignorar os próprios sentimentos.", "ex": "Ele envolve perceber os próprios sentimentos."}], "c": "a"}, {"n": 15, "tipo": "mc", "tag": "Ninguém cresce sozinho", "t": "<p>“Ninguém cresce sozinho” quer dizer que:</p>", "o": [{"id": "a", "txt": "Desde que nascemos, aprendemos no contato com pessoas, ambiente e cultura.", "ex": "Correto."}, {"id": "b", "txt": "Crescemos sem precisar de ninguém.", "ex": "É o contrário do que o texto diz."}, {"id": "c", "txt": "Só aprendemos sozinhos, lendo livros.", "ex": "Aprendemos no contato com os outros."}, {"id": "d", "txt": "As relações não influenciam quem somos.", "ex": "As relações ajudam a nos construir."}], "c": "a"}, {"n": 16, "tipo": "mc", "tag": "Cultura", "t": "<p>A cultura influencia, entre outras coisas:</p>", "o": [{"id": "a", "txt": "Hábitos, costumes, alimentação, crenças e valores.", "ex": "Correto."}, {"id": "b", "txt": "Apenas a altura das pessoas.", "ex": "Isso é característica física, não cultural."}, {"id": "c", "txt": "Somente a cor dos olhos.", "ex": "Isso é característica física."}, {"id": "d", "txt": "Nada da vida das pessoas.", "ex": "A cultura influencia muito o modo de viver."}], "c": "a"}, {"n": 17, "tipo": "mc", "tag": "Recursos pessoais", "t": "<p>São recursos PESSOAIS:</p>", "o": [{"id": "a", "txt": "Características e habilidades que desenvolvemos individualmente.", "ex": "Correto."}, {"id": "b", "txt": "Costumes e práticas aprendidos na cultura.", "ex": "Isso são recursos culturais."}, {"id": "c", "txt": "Habilidades desenvolvidas só nas relações com os outros.", "ex": "Isso são recursos sociais."}, {"id": "d", "txt": "O dinheiro guardado no banco.", "ex": "Não corresponde ao conceito."}], "c": "a"}, {"n": 18, "tipo": "mc", "tag": "Recursos culturais", "t": "<p>São recursos CULTURAIS:</p>", "o": [{"id": "a", "txt": "Conhecimentos, costumes, valores e práticas aprendidos na nossa cultura.", "ex": "Correto."}, {"id": "b", "txt": "Habilidades que cada um desenvolve sozinho.", "ex": "Isso são recursos pessoais."}, {"id": "c", "txt": "Apenas o que aprendemos conversando com amigos.", "ex": "Isso se aproxima dos recursos sociais."}, {"id": "d", "txt": "Os bens materiais da família.", "ex": "Não corresponde ao conceito."}], "c": "a"}, {"n": 19, "tipo": "mc", "tag": "Recursos sociais", "t": "<p>São recursos SOCIAIS:</p>", "o": [{"id": "a", "txt": "Aprendizagens e habilidades que desenvolvemos nas relações com outras pessoas.", "ex": "Correto."}, {"id": "b", "txt": "Habilidades individuais, sem ninguém por perto.", "ex": "Isso são recursos pessoais."}, {"id": "c", "txt": "Costumes aprendidos na cultura.", "ex": "Isso são recursos culturais."}, {"id": "d", "txt": "Objetos que compramos.", "ex": "Não corresponde ao conceito."}], "c": "a"}, {"n": 20, "tipo": "mc", "tag": "Mão dupla", "t": "<p>“Somos influenciados pelo mundo e também transformamos o mundo” significa que:</p>", "o": [{"id": "a", "txt": "A relação é de mão dupla: o mundo nos molda e nós também mudamos o mundo.", "ex": "Correto."}, {"id": "b", "txt": "Só o mundo nos influencia; nós não mudamos nada.", "ex": "É mão dupla, nos dois sentidos."}, {"id": "c", "txt": "Só nós influenciamos o mundo; ele não nos muda.", "ex": "É mão dupla, nos dois sentidos."}, {"id": "d", "txt": "Mundo e pessoa não têm nenhuma relação.", "ex": "Há uma relação forte entre os dois."}], "c": "a"}, {"n": 21, "tipo": "mc", "tag": "Cativar", "t": "<p>Na história do Pequeno Príncipe, “cativar” significa:</p>", "o": [{"id": "a", "txt": "Criar laços — tornar as pessoas importantes e únicas uma para a outra.", "ex": "Correto."}, {"id": "b", "txt": "Obrigar alguém a ficar perto.", "ex": "Cativar não é obrigar."}, {"id": "c", "txt": "Comprar a amizade de alguém.", "ex": "Vínculo não se compra."}, {"id": "d", "txt": "Ficar indiferente aos outros.", "ex": "É o oposto: cativar aproxima."}], "c": "a"}, {"n": 22, "tipo": "mc", "tag": "Amizade / reciprocidade", "t": "<p>Sobre a reciprocidade na amizade, é correto afirmar:</p>", "o": [{"id": "a", "txt": "A amizade vale dos dois lados (um se importa com o outro), mas as pessoas não precisam ser iguais.", "ex": "Correto."}, {"id": "b", "txt": "A amizade depende só do que uma pessoa sente.", "ex": "Reciprocidade é dos dois lados."}, {"id": "c", "txt": "As duas pessoas precisam ser exatamente iguais.", "ex": "Não precisam ser iguais; precisam valorizar o vínculo."}, {"id": "d", "txt": "Reciprocidade é não se importar com o outro.", "ex": "É o contrário: é se importar mutuamente."}], "c": "a"}, {"n": 23, "tipo": "mc", "tag": "Análise", "t": "<p>Sobre valores e identidade (Módulo 6 · Lição 1), analise as afirmações:</p><ul class='afirm'><li><b>I.</b> Os valores influenciam como pensamos, sentimos e agimos.</li><li><b>II.</b> Os valores são iguais para todas as pessoas.</li><li><b>III.</b> Cada pessoa constrói o seu próprio sistema de valores ao longo da vida.</li><li><b>IV.</b> Os valores podem mudar ao longo da vida.</li></ul>", "o": [{"id": "a", "txt": "Apenas I, III e IV estão corretas.", "ex": "Correto: a II é falsa, pois cada pessoa tem o seu sistema de valores."}, {"id": "b", "txt": "Apenas I e II estão corretas.", "ex": "A II é falsa e a III e a IV são verdadeiras."}, {"id": "c", "txt": "Todas estão corretas.", "ex": "A II é falsa."}, {"id": "d", "txt": "Apenas II e IV estão corretas.", "ex": "A II é falsa; a I e a III são verdadeiras."}], "c": "a"}, {"n": 24, "tipo": "mc", "tag": "Análise", "t": "<p>Sobre autoconhecimento e recursos (Módulo 7 · Lição 1), analise:</p><ul class='afirm'><li><b>I.</b> Autoconhecimento é o processo de compreender melhor quem somos.</li><li><b>II.</b> Recursos pessoais são aprendidos apenas na cultura.</li><li><b>III.</b> A cultura influencia hábitos, costumes e valores.</li><li><b>IV.</b> Somos influenciados pelo mundo e também o transformamos.</li></ul>", "o": [{"id": "a", "txt": "Apenas I, III e IV estão corretas.", "ex": "Correto: a II é falsa — recursos pessoais são individuais; os culturais é que vêm da cultura."}, {"id": "b", "txt": "Apenas I e II estão corretas.", "ex": "A II é falsa."}, {"id": "c", "txt": "Todas estão corretas.", "ex": "A II é falsa."}, {"id": "d", "txt": "Apenas II e III estão corretas.", "ex": "A II é falsa; a I e a IV são verdadeiras."}], "c": "a"}, {"n": 25, "tipo": "mc", "tag": "Análise", "t": "<p>Sobre o eu e o outro (Módulo 7 · Lição 2), analise:</p><ul class='afirm'><li><b>I.</b> “Cativar” significa criar laços.</li><li><b>II.</b> A amizade envolve reciprocidade.</li><li><b>III.</b> Fofoca e cochicho são exatamente a mesma coisa.</li><li><b>IV.</b> Comunicar exige responsabilidade, pois nem toda informação precisa ser repassada.</li></ul>", "o": [{"id": "a", "txt": "Apenas I, II e IV estão corretas.", "ex": "Correto: a III é falsa — cochicho e fofoca são diferentes."}, {"id": "b", "txt": "Apenas II e III estão corretas.", "ex": "A III é falsa."}, {"id": "c", "txt": "Todas estão corretas.", "ex": "A III é falsa."}, {"id": "d", "txt": "Apenas I e III estão corretas.", "ex": "A III é falsa; a I, II e IV são verdadeiras."}], "c": "a"}];
+var SEMENTE=820033;var PREF='SIM';var PAISCOD='PAIS-77';var TEMDISC=false;var MONO="'Courier New',monospace";
+
+var KEY='socioemo6sj_mod67_v1_simulado_v1'; var mem={};
+function ler(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return mem}}
+function gravar(s){try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){mem=s}carimbo();}
+function carimbo(){
+  var d=new Date();
+  var f=d.toLocaleDateString('pt-BR')+' às '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  S.quando=f;
+  try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){mem=S}
+  var el=document.getElementById('status'); if(el)el.textContent='💾 Salvo automaticamente — última vez: '+f;
+}
+function ligarPainel(){
+  document.getElementById('btExportar').onclick=function(){
+    var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='simulado-socioemo6-mosaico.json'; a.click();
+  };
+  document.getElementById('btImportar').onclick=function(){document.getElementById('arquivo').click();};
+  document.getElementById('arquivo').onchange=function(e){
+    var f=e.target.files[0]; if(!f)return; var r=new FileReader();
+    r.onload=function(){ try{ S=normaliza(JSON.parse(r.result)); gravar(S); render();
+        aviso('Pronto','Seu progresso foi importado com sucesso.');
+      }catch(err){ aviso('Ops','Não consegui ler esse arquivo. Ele precisa ser o .json exportado por este material.'); } };
+    r.readAsText(f);
+  };
+  document.getElementById('btZerar').onclick=function(){
+    aviso('Zerar tudo?','Isso apaga tudo o que foi respondido nesta página. Não dá para desfazer.',function(){
+      S=normaliza({}); gravar(S); render(); },true);
+  };
+}
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);
+  t=t+Math.imul(t^t>>>7,61|t)^t;return ((t^t>>>14)>>>0)/4294967296;};}
+function embaralha(arr,semente){
+  var r=mulberry32(semente),a=arr.slice();
+  for(var i=a.length-1;i>0;i--){var j=Math.floor(r()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}
+  return a;
+}
+function codigo(pref,acertos,semente){
+  var L='ABCDEFGHJKLMNPQRSTUVWXYZ', r=mulberry32(semente*7919+13);
+  var y=L[Math.floor(r()*L.length)]+L[Math.floor(r()*L.length)];
+  var n=(acertos<10?'0':'')+acertos;
+  return pref+'-'+n+'-'+y;
+}
+function normaliza(d){d=d||{};if(!d.resp)d.resp={};if(d.enviado===undefined)d.enviado=false;
+  if(d.liberado===undefined)d.liberado=false;if(!d.codigo)d.codigo='';return d;}
+var S=normaliza(ler());
+var ORDEM={};
+QS.forEach(function(q){
+  if(q.tipo==='mc'||q.tipo==='rom'){ ORDEM[q.n]=embaralha(q.o,SEMENTE+q.n*101); }
+});
+function acertou(q){
+  var r=S.resp[q.n];
+  if(q.tipo==='disc')return false;
+  if(q.tipo==='som')return r!==undefined&&r!==''&&parseInt(r,10)===q.soma;
+  return r===q.c;
+}
+function totalObj(){var t=0;QS.forEach(function(q){if(q.tipo!=='disc')t++;});return t;}
+function acertos(){var a=0;QS.forEach(function(q){if(acertou(q))a++;});return a;}
+function letra(i){return 'abcdefgh'[i];}
+function render(){
+  var alvo=document.getElementById('qs');alvo.innerHTML='';
+  QS.forEach(function(q){
+    var sec=document.createElement('section');sec.className='q';
+    var h='<div class="cabq"><span class="nq">'+(q.tipo==='disc'?'DISCURSIVA':'Questão '+q.n)+'</span>'+
+      (q.tag?'<span class="tag">'+q.tag+'</span>':'')+(q.val?'<span class="val">'+q.val+'</span>':'')+'</div>';
+    h+='<div class="enun">'+q.t+'</div>';
+    var ord=ORDEM[q.n];
+    h+='<ul class="alts">';
+    ord.forEach(function(op,i){
+      var cls='',ex='';
+      var marcada=(S.resp[q.n]===op.id);
+      if(S.liberado){
+        cls=(op.id===q.c)?'certa':'errada';
+        ex='<p class="expl'+(op.id===q.c?' boa':'')+'">'+(op.id===q.c?'✅ ':'❌ ')+op.ex+'</p>';
+      }
+      if(marcada&&!S.liberado)cls+=' marcada';
+      h+='<li><label class="'+cls+'"><input type="radio" name="q'+q.n+'" value="'+op.id+'" data-n="'+q.n+
+         '" class="inMc" '+(marcada?'checked':'')+' '+(S.enviado?'disabled':'')+'>'+
+         '<span class="letra">'+letra(i)+')</span><span>'+op.txt+'</span></label>'+ex+'</li>';
+    });
+    h+='</ul>';
+    sec.innerHTML=h;alvo.appendChild(sec);
+  });
+  ligarQ(); pintaProg(); painelResultado();
+}
+function pintaProg(){
+  var c=0;QS.forEach(function(q){var r=S.resp[q.n];if(r!==undefined&&r!=='')c++;});
+  document.getElementById('barra').style.width=(c/QS.length*100)+'%';
+  document.getElementById('txtProg').textContent=c+' de '+QS.length+' questões respondidas.';
+  var bt=document.getElementById('btEnviar'); if(bt)bt.disabled=S.enviado||(c<QS.length);
+}
+function ligarQ(){
+  document.querySelectorAll('.inMc').forEach(function(el){
+    el.addEventListener('change',function(){S.resp[el.dataset.n]=el.value;gravar(S);pintaProg();
+      el.closest('.alts').querySelectorAll('label').forEach(function(l){l.classList.remove('marcada');});
+      el.closest('label').classList.add('marcada');});
+  });
+}
+function painelResultado(){
+  var box=document.getElementById('resultado');
+  if(!S.enviado){box.style.display='none';return;}
+  box.style.display='block';
+  var a=acertos(),t=totalObj();
+  box.innerHTML='<h2>📋 Respostas enviadas</h2>'+
+    '<p>Código de liberação para os pais:</p><div class="cod">'+S.codigo+'</div>'+
+    '<p style="font-family:'+MONO+';font-size:13px">Os dois números do meio são a quantidade de acertos (de '+t+' questões).</p>';
+}
+document.getElementById('btEnviar').onclick=function(){
+  var falta=0;QS.forEach(function(q){var r=S.resp[q.n];if(r===undefined||r==='')falta++;});
+  if(falta){aviso('Falta pouco','Ainda há '+falta+' questão(ões) sem resposta. Responda todas antes de enviar.');return;}
+  aviso('Enviar respostas?','Depois de enviar não dá mais para mudar as respostas. O código de liberação vai aparecer na tela.',function(){
+    S.enviado=true; S.codigo=codigo(PREF,acertos(),SEMENTE); gravar(S); render();
+    document.getElementById('resultado').scrollIntoView({behavior:'smooth',block:'center'});
+  },true);
+};
+document.getElementById('btGab').onclick=function(){
+  var v=(document.getElementById('codGab').value||'').trim().toUpperCase();
+  if(S.enviado&&(v===S.codigo||v===PAISCOD)){S.liberado=true;gravar(S);render();
+    document.getElementById('qs').scrollIntoView({behavior:'smooth'});}
+  else if(!S.enviado){document.getElementById('avGab').textContent=' ❌ Envie as respostas primeiro.';}
+  else{document.getElementById('avGab').textContent=' ❌ Código incorreto.';}
+};
+ligarPainel(); render(); carimbo();
+</script>
+</body></html>

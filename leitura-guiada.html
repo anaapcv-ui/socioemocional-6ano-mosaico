@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mosaico de Mim — Leitura Guiada | Ed. Socioemocional 6º ano</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#14181c;color:#ecebe4;font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;font-size:18px;line-height:1.65}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px 90px}
+a{color:#2fb6a3}
+header.top{border-bottom:2px solid #e0864c;padding:24px 0 14px;text-align:center}
+.mast{margin:0;font-size:clamp(28px,6.5vw,52px);line-height:1.05;letter-spacing:.02em;color:#e0864c;text-transform:uppercase;font-weight:800}
+.mast .sub{display:block;font-size:.30em;letter-spacing:.22em;font-weight:400;margin-top:12px;color:#9aa2aa;text-transform:uppercase}
+.faixa{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;font-family:'Courier New',monospace;font-size:11.5px;letter-spacing:.12em;
+  text-transform:uppercase;border-top:1px solid #343b43;border-bottom:1px solid #343b43;margin-top:14px;padding:8px 0;color:#9aa2aa}
+.selo{display:inline-block;background:#e0864c;color:#14181c;font-family:'Courier New',monospace;font-size:11.5px;letter-spacing:.14em;
+  padding:6px 13px;border-radius:3px;text-transform:uppercase;font-weight:700;margin-top:14px}
+nav.abas{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:16px 0 4px}
+nav.abas a{font-family:'Courier New',monospace;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;
+  color:#ecebe4;border:1px solid #343b43;background:#1e2228;padding:9px 13px;border-radius:3px}
+nav.abas a.atual{background:#e0864c;color:#14181c;border-color:#e0864c;font-weight:700}
+nav.abas a:hover{background:#2fb6a3;color:#14181c;border-color:#2fb6a3}
+.painel{border:1px solid #343b43;background:#1e2228;padding:12px 14px;margin:18px 0 22px;display:flex;flex-wrap:wrap;
+  gap:10px;align-items:center;justify-content:space-between;border-radius:4px}
+.painel .status{font-family:'Courier New',monospace;font-size:12.5px;color:#9aa2aa}
+.painel .btns{display:flex;gap:7px;flex-wrap:wrap}
+button{font-family:'Courier New',monospace;font-size:13px;cursor:pointer;border:1px solid #343b43;background:#1e2228;color:#ecebe4;
+  padding:9px 13px;border-radius:3px}
+button:hover{background:#2fb6a3;color:#14181c;border-color:#2fb6a3}
+button:disabled{opacity:.4;cursor:not-allowed}
+button.principal{background:#e0864c;color:#14181c;border-color:#e0864c;font-weight:700}
+input,select,textarea{font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif}
+.barra{height:14px;border:1px solid #343b43;background:#1e2228;border-radius:8px;overflow:hidden}
+.barra i{display:block;height:100%;background:linear-gradient(90deg,#e0864c,#2fb6a3);width:0;transition:width .4s}
+.progresso p{font-family:'Courier New',monospace;font-size:12.5px;margin:7px 0 22px;color:#9aa2aa}
+.aviso-box{font-family:'Courier New',monospace;font-size:13px;background:#1e2228;border:1px solid #343b43;border-left:4px solid #e0864c;
+  padding:12px 14px;border-radius:4px;line-height:1.6}
+.secao-tit{border-bottom:2px solid #e0864c;margin:34px 0 16px;padding-bottom:7px;font-size:25px;color:#e0864c}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.74);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.overlay.on{display:flex}
+.modal{background:#1e2228;border:2px solid #e0864c;max-width:440px;width:100%;padding:22px;border-radius:6px}
+.modal h3{margin:0 0 10px;font-size:21px;color:#e0864c}
+.modal p{margin:0 0 16px}
+.modal .acoes{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.rodape{border-top:2px solid #343b43;margin-top:34px;padding-top:16px;display:flex;flex-wrap:wrap;gap:12px;
+  justify-content:space-between;align-items:center;font-family:'Courier New',monospace;font-size:12.5px;color:#9aa2aa}
+.rodape a{color:#ecebe4;text-decoration:none;border:1px solid #343b43;background:#1e2228;padding:10px 15px;
+  border-radius:3px;text-transform:uppercase;letter-spacing:.06em}
+.rodape a:hover{background:#e0864c;color:#14181c;border-color:#e0864c}
+.tabela-wrap{overflow-x:auto}
+table.cob{width:100%;border-collapse:collapse;background:#1e2228;font-size:16px}
+table.cob th,table.cob td{border:1px solid #343b43;padding:9px 11px;text-align:left}
+table.cob th{background:#262b31;font-family:'Courier New',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#e0864c}
+@media(max-width:620px){body{font-size:17px}}
+.bloco{border:1px solid #343b43;background:#1e2228;margin:0 0 22px;border-radius:5px;overflow:hidden}
+.bloco.trancado{opacity:.5}
+.bloco>.cab{display:flex;gap:12px;align-items:baseline;padding:14px 18px;border-bottom:1px solid #343b43;background:#262b31;flex-wrap:wrap}
+.bloco .num{font-family:'Courier New',monospace;font-size:11.5px;letter-spacing:.13em;color:#14181c;background:#e0864c;padding:5px 10px;border-radius:3px;white-space:nowrap;font-weight:700}
+.bloco h2{margin:0;font-size:22px;color:#2fb6a3}
+.bloco .pag{font-family:'Courier New',monospace;font-size:11.5px;color:#9aa2aa;margin-left:auto;white-space:nowrap}
+.corpo{padding:18px 20px}
+.corpo p{margin:0 0 14px}
+.corpo ul{margin:0 0 14px;padding-left:22px}.corpo li{margin-bottom:7px}
+.ex{background:#262b31;border-left:4px solid #e8b84b;padding:10px 14px;margin:0 0 14px;border-radius:0 4px 4px 0}
+.dest{background:#e0864c;color:#14181c;padding:1px 5px;border-radius:2px;font-weight:600}
+.perguntas{border-top:1px dashed #343b43;padding:16px 20px;background:#262b31}
+.perguntas h3{font-family:'Courier New',monospace;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 12px;color:#e0864c}
+.pergunta{margin:0 0 15px}
+.pergunta label{display:block;font-weight:700;margin-bottom:6px;font-size:17px}
+textarea{width:100%;min-height:74px;font-size:16.5px;line-height:1.5;padding:10px;border:1px solid #343b43;
+  background:#14181c;color:#ecebe4;border-radius:4px;resize:vertical}
+textarea:focus{outline:2px solid #2fb6a3;outline-offset:1px}
+textarea.verm{border-color:#e0563f;background:rgba(200,60,50,.12)}
+.avVerm{color:#e0563f;font-weight:bold;font-size:13.5px;margin:6px 0 0;font-family:'Courier New',monospace}
+.aviso{font-family:'Courier New',monospace;font-size:12.5px;color:#f2dda0;margin:0 0 10px;min-height:16px;line-height:1.5}
+.modelo{border-top:1px solid #343b43;padding:16px 20px;background:rgba(255,255,255,.035)}
+.modelo h4{font-family:'Courier New',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px;color:#2fb6a3}
+.mQ{border-top:1px dashed #343b43;padding-top:10px;margin-top:10px}
+.mResp{margin:0 0 8px}
+.chkbox{background:#262b31;border:1px solid #343b43;border-radius:4px;padding:10px 12px}
+.chkTit{margin:0 0 8px;font-family:'Courier New',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#9aa2aa}
+.ponto{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:5px 0;font-size:15.5px}
+.pbts{display:flex;gap:6px;flex-shrink:0}
+.btChk{border:1px solid #343b43;background:#1e2228;color:#ecebe4;padding:5px 13px;border-radius:3px;cursor:pointer;font-size:13px}
+.btChk.on{background:#2fb6a3;color:#14181c;border-color:#2fb6a3;font-weight:700}
+.btChk.nao.on{background:#e0563f;border-color:#e0563f;color:#fff}
+.selo-ok{color:#2fb6a3;font-weight:bold}
+.selo-rev{color:#e0563f;font-weight:bold}
+.auto{display:flex;gap:8px;flex-wrap:wrap;align-items:center;border-top:1px dashed #343b43;padding-top:12px;margin-top:10px}
+.cadeado{padding:16px 20px;font-family:'Courier New',monospace;font-size:13px;color:#9aa2aa}
+.revisar{border:2px solid #e0563f;background:rgba(200,60,50,.10);border-radius:5px;padding:16px 20px;margin:26px 0}
+.revisar h2{margin:0 0 10px;color:#e0563f;font-size:22px}
+.revisar li{margin-bottom:6px}
+.pegadinhas{border:2px solid #e8b84b;background:rgba(90,141,238,.08);padding:18px 20px;margin:30px 0 22px;border-radius:5px}
+.pegadinhas h2{margin:0 0 12px;color:#e8b84b;font-size:23px}
+.pegadinhas ol{margin:0;padding-left:22px}.pegadinhas li{margin-bottom:10px}
+</style>
+</head><body>
+<div class="wrap">
+<header class="top">
+  <h1 class="mast">Mosaico de Mim<span class="sub">Kit de Estudo · Ed. Socioemocional 6º ano · Prova 19/10</span></h1>
+  <div class="faixa"><span>6º ano · Ed. Socioemocional</span><span>·</span><span>Módulos 6 e 7</span><span>·</span><span>Projeto de Vida · Autoconhecimento</span></div>
+  <p style="margin:0"><span class="selo">Etapa 1 — Leitura Guiada</span></p>
+</header>
+<nav class="abas"><a href="leitura-guiada.html" class="atual">📖 1. Leitura Guiada</a><a href="quiz.html">🎯 2. Quiz</a><a href="resumo.html">🗺️ 3. Resumo</a><a href="simulado.html">📝 4. Simulado</a><a href="index.html">🏠 Início</a></nav>
+
+<div class="painel">
+  <div class="status" id="status">Carregando seu progresso…</div>
+  <div class="btns">
+    <button id="btExportar">📥 Exportar</button>
+    <button id="btImportar">📤 Importar</button>
+    <button id="btZerar">🗑️ Zerar tudo</button>
+  </div>
+</div>
+<input type="file" id="arquivo" accept="application/json" style="display:none">
+
+<div class="progresso"><div class="barra"><i id="barra"></i></div>
+<p id="txtProg">Painel 0 de 4 concluído.</p></div>
+<p class="aviso-box"><b>Como funciona:</b> leia o painel, <b>escreva</b> as 3 respostas com as suas palavras e clique em <b>Conferir</b>. Só depois aparecem a resposta modelo e o checklist. Se a resposta vier igualzinha ao texto, o material pede para reescrever com as suas palavras — escrever é o que faz a matéria grudar. Cada painel do mosaico só abre depois que você confere o anterior.</p>
+<div id="blocos"></div>
+<section class="revisar" id="revisarBox" style="display:none"></section>
+<section class="pegadinhas"><h2>⚠️ As 10 pegadinhas desta prova</h2><ol>
+<li><b>Valores NÃO são fixos para sempre:</b> podem mudar e ser ressignificados ao longo da vida, com novas experiências e relações.</li>
+<li><b>Cada pessoa tem o SEU sistema de valores</b> — por isso duas pessoas podem fazer escolhas diferentes numa mesma situação.</li>
+<li><b>A ordem é:</b> valores → atitudes → escolhas → consequências (não o contrário).</li>
+<li><b>Valores e identidade andam juntos:</b> perguntar “o que é importante para mim?” ajuda a responder “quem eu sou?”.</li>
+<li><b>As profissões existem para atender NECESSIDADES da sociedade</b> — saiba ligar cada exemplo (Educação, Saúde, Serviço social, Políticas públicas, ONGs) à sua necessidade.</li>
+<li><b>O mundo do trabalho ESTÁ mudando:</b> não dá para saber o futuro exato, mas dá para observar tendências e se preparar.</li>
+<li><b>Papéis sociais:</b> a MESMA pessoa vive vários papéis ao longo da vida, cada um com responsabilidades diferentes.</li>
+<li><b>Recursos — não troque!</b> PESSOAIS = individuais; CULTURAIS = aprendidos na cultura; SOCIAIS = desenvolvidos nas relações com os outros.</li>
+<li><b>Mão dupla:</b> somos influenciados pelo mundo E também transformamos o mundo.</li>
+<li><b>Cochicho ≠ fofoca:</b> cochicho é conversa particular que preserva a intimidade; fofoca envolve informação inventada, especulada ou divulgada sem consentimento. “Cativar” (Pequeno Príncipe) = criar laços; a amizade pede <u>reciprocidade</u>, mas as pessoas não precisam ser iguais.</li>
+</ol></section>
+<h2 class="secao-tit">🧭 Cobertura: tópico → painel</h2>
+<div class="tabela-wrap"><table class="cob"><thead><tr><th>Tópico do escopo</th><th>Módulo / Lição</th><th>Painel</th></tr></thead><tbody>
+<tr><td>Valores pessoais e sistema de valores; valores e identidade; valores mudam; valores orientam escolhas</td><td>Mód. 6 · Lição 1</td><td>Painel 1</td></tr>
+<tr><td>Trabalho com significado; profissões × necessidades da sociedade; mundo do trabalho em transformação; papéis sociais</td><td>Mód. 6 · Lição 2</td><td>Painel 2</td></tr>
+<tr><td>Autoconhecimento; ninguém cresce sozinho; cultura; recursos pessoais, culturais e sociais; identidade e mão dupla</td><td>Mód. 7 · Lição 1</td><td>Painel 3</td></tr>
+<tr><td>Vínculos e “cativar”; amizade e reciprocidade; comunicação com responsabilidade; cochicho × fofoca; olhar para o outro</td><td>Mód. 7 · Lição 2</td><td>Painel 4</td></tr>
+</tbody></table></div>
+<div class="rodape"><span>Próximo material da sequência →</span><a href="quiz.html">🎯 Ir para o Quiz</a></div>
+
+</div>
+<div class="overlay" id="overlay"><div class="modal">
+  <h3 id="mTit">Aviso</h3><p id="mTxt"></p>
+  <div class="acoes"><button id="mNao" style="display:none">Cancelar</button>
+  <button class="principal" id="mSim">Entendi</button></div>
+</div></div>
+<script>
+function aviso(t,msg,onSim,comCancelar){
+  document.getElementById('mTit').textContent=t;
+  document.getElementById('mTxt').textContent=msg;
+  document.getElementById('mNao').style.display=comCancelar?'inline-block':'none';
+  var ov=document.getElementById('overlay'); ov.classList.add('on');
+  document.getElementById('mSim').onclick=function(){ov.classList.remove('on'); if(onSim)onSim();};
+  document.getElementById('mNao').onclick=function(){ov.classList.remove('on');};
+}
+var BLOCOS=[{"n": 1, "rot": "Painel 1", "t": "As cores dos meus valores", "pg": "Módulo 6 · Lição 1", "html": "\n<p>Você já percebeu que algumas coisas são muito importantes para você — e que, para um colega, as importantes podem ser outras? Isso tem a ver com os <b>valores pessoais</b>: aquilo que a gente considera importante e que <span class=\"dest\">influencia como pensamos, sentimos e agimos</span>.</p>\n<p>Cada pessoa vai construindo, ao longo da vida, o seu próprio <b>sistema de valores</b>. Ele se forma com as <b>experiências</b>, as <b>relações</b> com outras pessoas, as <b>aprendizagens</b> e as <b>escolhas</b> que fazemos. Por isso ninguém tem exatamente o mesmo conjunto de valores que outra pessoa.</p>\n<p>Como não valorizamos tudo do mesmo jeito, duas pessoas podem viver uma situação parecida e <b>escolher de formas diferentes</b>. Os valores também se ligam à nossa <b>identidade</b>: quando a gente pergunta “o que é importante para mim?”, está ajudando a responder “quem eu sou?”.</p>\n<p>Os valores <b>não são fixos para sempre</b>: novas experiências e relações podem fazer um valor ganhar ou perder importância. E eles funcionam como uma referência nas horas difíceis, nesta ordem: <b>valores → atitudes → escolhas → consequências</b>. Eles aparecem na vida pessoal (sonhos e objetivos), no dia a dia (família, amizades, escola) e na vida social (justiça, direitos, respeito às minorias).</p>\n<div class=\"ex\"><b>Guarde isto:</b> valores são o que você considera importante; cada um monta o seu sistema de valores; eles podem mudar ao longo da vida e ajudam a fazer escolhas mais conscientes.</div>", "q": ["Com suas palavras, o que são valores pessoais?", "Escolha um valor importante para VOCÊ e explique como ele pode influenciar uma escolha do seu dia a dia.", "Dois colegas viveram a mesma situação e fizeram escolhas diferentes. Usando a ideia de “sistema de valores”, explique como isso é possível."], "a": ["São aquilo que a pessoa considera importante e que influencia a forma como ela pensa, sente e age. Cada pessoa constrói o seu próprio sistema de valores ao longo da vida.", "Resposta pessoal. Espera-se um valor seu (ex.: honestidade, amizade, estudo) e uma escolha do dia a dia que esse valor influencia, mostrando a ligação valor → atitude → escolha.", "Resposta pessoal. Espera-se: como cada pessoa organiza seus valores de um jeito (dá mais ou menos importância a cada coisa), diante da mesma situação elas priorizam valores diferentes e, por isso, escolhem de formas diferentes."]}, {"n": 2, "rot": "Painel 2", "t": "O mosaico e a sociedade", "pg": "Módulo 6 · Lição 2", "html": "\n<p>Pensar no futuro também é pensar no <b>trabalho</b>. E o trabalho pode ser muito mais do que receber um salário: quando fazemos uma atividade que tem <b>significado</b> para nós e percebemos que ela <span class=\"dest\">contribui para outras pessoas</span>, sentimos satisfação e realização.</p>\n<p>As <b>profissões existem porque atendem a necessidades da sociedade</b>. Veja alguns exemplos: a <b>Educação</b> cuida do desenvolvimento das novas gerações; a <b>Saúde</b> cuida do bem-estar das pessoas; o <b>Serviço social</b> apoia quem está em situação vulnerável; as <b>Políticas públicas</b> levam serviços e ações para a comunidade; as <b>ONGs</b> trabalham pela melhoria e pela transformação social.</p>\n<p>O <b>mundo do trabalho está mudando</b>. A tecnologia, as mudanças climáticas e as novas necessidades podem transformar profissões e fazer surgir outras. Ninguém sabe o futuro com certeza, mas dá para observar <b>tendências</b> e se preparar. Algumas áreas que podem crescer: adaptação às mudanças climáticas, sustentabilidade nas cidades, energias renováveis, alimentos sustentáveis, inteligência artificial, bem-estar digital e tecnologias médicas.</p>\n<p>Além disso, uma mesma pessoa desempenha vários <b>papéis sociais</b> ao longo da vida: pode ser estudante, filho ou filha, amigo ou amiga, atleta, integrante de uma ONG, profissional, cuidador ou cuidadora. Cada papel envolve <b>relações, comportamentos e responsabilidades diferentes</b>.</p>\n<div class=\"ex\"><b>Guarde isto:</b> o trabalho com significado também contribui para os outros; as profissões atendem a necessidades da sociedade; o mundo do trabalho muda; e cada pessoa vive vários papéis sociais.</div>", "q": ["Por que, segundo o texto, as profissões existem? Dê um exemplo de profissão e da necessidade da sociedade que ela atende.", "O texto diz que o trabalho pode ser mais do que um salário. Explique essa ideia com um exemplo seu.", "Cite dois papéis sociais que VOCÊ vive hoje e mostre que cada um tem responsabilidades diferentes."], "a": ["As profissões existem porque atendem a diferentes necessidades da sociedade. Exemplo: a Educação atende à necessidade de desenvolvimento das novas gerações (ou Saúde → cuidado e bem-estar; Serviço social → apoio a quem é vulnerável etc.).", "Resposta pessoal. Espera-se: o trabalho também traz satisfação quando tem significado e contribui para outras pessoas; mais um exemplo em que o trabalho ajuda alguém.", "Resposta pessoal. Espera-se dois papéis sociais (ex.: estudante, filho(a), amigo(a), atleta) com uma responsabilidade diferente para cada um."]}, {"n": 3, "rot": "Painel 3", "t": "As peças que me formam", "pg": "Módulo 7 · Lição 1", "html": "\n<p>O <b>autoconhecimento</b> é o processo de <span class=\"dest\">conhecer e compreender melhor quem somos</span>. Ele envolve perceber nossas características, experiências, sentimentos, interesses, relações e a nossa história. Conhecer a própria história ajuda a entender quem estamos nos tornando.</p>\n<p>Uma coisa importante: <b>ninguém cresce sozinho</b>. Desde que nascemos, aprendemos no contato com as <b>pessoas</b>, o <b>ambiente</b> e a <b>cultura</b> — aprendemos a falar, a conviver, a reconhecer costumes, a compreender valores e a interpretar o mundo. Tudo isso ajuda a construir o nosso jeito de ser.</p>\n<p>A <b>cultura</b> influencia hábitos, costumes, alimentação, formas de comunicação, crenças, valores e maneiras de viver. Por isso pessoas de lugares diferentes desenvolvem costumes diferentes: elas vivem em <b>contextos culturais diferentes</b>.</p>\n<p>Ao longo da vida desenvolvemos três tipos de <b>recursos</b>: os <b>recursos pessoais</b> (características e habilidades que desenvolvemos individualmente), os <b>recursos culturais</b> (conhecimentos, costumes, valores e práticas que aprendemos na nossa cultura) e os <b>recursos sociais</b> (aprendizagens e habilidades que desenvolvemos nas relações com outras pessoas). Eles participam da construção da nossa <b>identidade</b>. E atenção: somos influenciados pelo mundo, mas também <b>transformamos o mundo</b> — é uma relação de mão dupla.</p>\n<div class=\"ex\"><b>Guarde isto:</b> autoconhecimento é compreender quem somos; ninguém cresce sozinho; a cultura influencia nosso jeito de viver; temos recursos pessoais, culturais e sociais; e influenciamos o mundo ao mesmo tempo que somos influenciados por ele.</div>", "q": ["O que é autoconhecimento, com suas palavras?", "Dê um exemplo de um recurso PESSOAL seu e um recurso CULTURAL ou SOCIAL, e explique a diferença entre eles.", "O texto diz que somos influenciados pelo mundo, mas também transformamos o mundo. Explique essa ideia de “mão dupla” com um exemplo."], "a": ["É o processo de conhecer e compreender melhor quem somos, percebendo nossas características, experiências, sentimentos, interesses, relações e nossa história.", "Resposta pessoal. Espera-se: um recurso pessoal (habilidade individual, ex.: saber desenhar) e um cultural (ex.: uma receita ou costume da sua cultura) OU social (ex.: saber trabalhar em equipe, aprendido com os outros), explicando que o pessoal é individual e o cultural/social vem da cultura ou das relações.", "Resposta pessoal. Espera-se: as pessoas, a cultura e o ambiente nos moldam, mas nossas atitudes também mudam o que está à nossa volta; mais um exemplo (ex.: aprendo valores com a família e, ao ajudar na escola, também mudo o ambiente)."]}, {"n": 4, "rot": "Painel 4", "t": "As peças que nos ligam", "pg": "Módulo 7 · Lição 2", "html": "\n<p>Nossa identidade se constrói nas <b>relações</b>: outras pessoas participam da nossa história. Algumas relações se tornam especialmente importantes porque criamos <b>vínculos</b>. No livro <i>O Pequeno Príncipe</i>, a raposa explica o que é <b>“cativar”</b>: é <span class=\"dest\">“criar laços”</span>. Quando alguém cativa o outro, os dois passam a precisar um do outro e se tornam únicos um para o outro.</p>\n<p>A <b>amizade</b> é uma forma de <b>vínculo afetivo</b> entre pessoas. Ela pode envolver afeto, confiança, companhia, compartilhamento, apoio e <b>reciprocidade</b>. Reciprocidade quer dizer que a amizade não depende só do que uma pessoa sente: é um “<b>eu me importo com você ↔ você também se importa comigo</b>”. Isso não significa que as pessoas precisem ser iguais, e sim que as duas reconhecem e valorizam o vínculo.</p>\n<p>A <b>comunicação</b> aproxima as pessoas: conversando, a gente compartilha ideias, experiências, sentimentos, informações e até segredos. Mas conversar também exige <b>responsabilidade</b>: <b>nem toda informação que chega até nós precisa ser repassada</b>.</p>\n<p>Por isso é importante diferenciar <b>cochicho</b> e <b>fofoca</b>. O <b>cochicho</b> é conversar em particular, preservar uma intimidade, compartilhar algo com alguém próximo. Já a <b>fofoca</b> pode envolver informações <b>inventadas, especuladas ou divulgadas sem o consentimento</b> da pessoa. O problema da fofoca está no conteúdo, na intenção, na forma de divulgar e nas consequências para as pessoas. Por fim, <b>olhar para o outro revela quem somos</b>: ao observar alguém, não enxergamos só o que a pessoa é — interpretamos a partir das nossas experiências, crenças, valores e expectativas. Refletir sobre como vemos os outros também é autoconhecimento.</p>\n<div class=\"ex\"><b>Guarde isto:</b> criar vínculo é “cativar” (criar laços); a amizade envolve afeto e reciprocidade; a comunicação aproxima, mas pede responsabilidade; cochicho ≠ fofoca; e o modo como vemos os outros fala também sobre nós.</div>", "q": ["O que significa “cativar”, na história do Pequeno Príncipe, e o que é reciprocidade na amizade?", "Explique, com suas palavras, a diferença entre cochicho e fofoca, e dê um exemplo de cada.", "Um colega te contou um segredo. Usando a ideia de “comunicação com responsabilidade”, explique o que você deve pensar antes de repassar."], "a": ["Cativar significa “criar laços”: quando alguém cativa o outro, os dois passam a precisar um do outro e se tornam únicos um para o outro. Reciprocidade é quando a amizade vale dos dois lados — eu me importo com você e você também se importa comigo.", "Resposta pessoal. Espera-se: cochicho = conversar em particular, preservar uma intimidade, falar algo com alguém próximo; fofoca = espalhar informação inventada, especulada ou divulgada sem o consentimento da pessoa. Mais um exemplo de cada.", "Resposta pessoal. Espera-se: nem toda informação que chega até nós precisa ser repassada; devo pensar no conteúdo, na intenção, na forma e nas consequências para a pessoa, respeitando a intimidade e o consentimento dela."]}];
+var PONTOS=[[["que é aquilo que a pessoa considera importante", "que influencia como pensamos, sentimos e agimos"], ["escolhi um valor meu", "expliquei uma escolha do dia a dia que esse valor influencia"], ["que cada pessoa tem o seu próprio sistema de valores", "que por isso, na mesma situação, podem priorizar e escolher de modo diferente"]], [["que as profissões existem para atender necessidades da sociedade", "dei um exemplo de profissão ligada a uma necessidade"], ["que o trabalho pode ter significado e contribuir para outras pessoas", "dei um exemplo em que o trabalho ajuda alguém"], ["citei dois papéis sociais meus", "mostrei uma responsabilidade diferente em cada papel"]], [["que é conhecer e compreender melhor quem somos", "que envolve perceber características, sentimentos, relações e história"], ["dei um exemplo de recurso pessoal (individual)", "dei um exemplo de recurso cultural ou social e expliquei a diferença"], ["que o mundo, a cultura e as relações nos influenciam", "que nós também transformamos o mundo (com um exemplo)"]], [["que cativar é criar laços / tornar-se únicos um para o outro", "que reciprocidade é a amizade valer dos dois lados"], ["que cochicho é conversar em particular / preservar a intimidade", "que fofoca envolve informação inventada ou sem consentimento, e dei exemplos"], ["que nem toda informação precisa ser repassada", "que devo pensar nas consequências e no respeito à pessoa antes de repassar"]]];
+
+var KEY='socioemo6sj_mod67_v1_leituraguiada_v1'; var mem={};
+function ler(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return mem}}
+function gravar(s){try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){mem=s}carimbo();}
+function carimbo(){
+  var d=new Date();
+  var f=d.toLocaleDateString('pt-BR')+' às '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  S.quando=f;
+  try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){mem=S}
+  var el=document.getElementById('status'); if(el)el.textContent='💾 Salvo automaticamente — última vez: '+f;
+}
+function ligarPainel(){
+  document.getElementById('btExportar').onclick=function(){
+    var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='leitura-guiada-socioemo6-mosaico.json'; a.click();
+  };
+  document.getElementById('btImportar').onclick=function(){document.getElementById('arquivo').click();};
+  document.getElementById('arquivo').onchange=function(e){
+    var f=e.target.files[0]; if(!f)return; var r=new FileReader();
+    r.onload=function(){ try{ S=normaliza(JSON.parse(r.result)); gravar(S); render();
+        aviso('Pronto','Seu progresso foi importado com sucesso.');
+      }catch(err){ aviso('Ops','Não consegui ler esse arquivo. Ele precisa ser o .json exportado por este material.'); } };
+    r.readAsText(f);
+  };
+  document.getElementById('btZerar').onclick=function(){
+    aviso('Zerar tudo?','Isso apaga tudo o que foi respondido nesta página. Não dá para desfazer.',function(){
+      S=normaliza({}); gravar(S); render(); },true);
+  };
+}
+function normTxt(s){s=(s||'').toLowerCase();try{s=s.normalize('NFD').replace(/[̀-ͯ]/g,'')}catch(e){}
+  return s.replace(/[^a-z0-9\s]+/g,' ').replace(/\s+/g,' ').trim();}
+var TXTN=BLOCOS.map(function(b){var d=document.createElement('div');d.innerHTML=b.html;
+  return normTxt(d.textContent||d.innerText||'').split(' ');});
+var QTXT=BLOCOS.map(function(b){return b.q.map(function(q){return normTxt(q).split(' ');});});
+function analisaRuns(rw,bw){
+  var pos={},i2;for(i2=0;i2<bw.length;i2++){(pos[bw[i2]]=pos[bw[i2]]||[]).push(i2);}
+  var i=0,maxRun=0,cob=0,n=rw.length;
+  while(i<n){
+    var best=0,ps=pos[rw[i]]||[];
+    for(var a=0;a<ps.length;a++){var k=0;while(i+k<n&&bw[ps[a]+k]===rw[i+k])k++;if(k>best)best=k;}
+    if(best>maxRun)maxRun=best;
+    if(best>=5){cob+=best;i+=best;}else i++;
+  }
+  return {maxRun:maxRun,cob:cob,n:n};
+}
+function tiraCitacao(rw,qw){
+  var pos={},i2;for(i2=0;i2<qw.length;i2++){(pos[qw[i2]]=pos[qw[i2]]||[]).push(i2);}
+  var out=[],i=0;
+  while(i<rw.length){
+    var best=0,ps=pos[rw[i]]||[];
+    for(var a=0;a<ps.length;a++){var k=0;while(i+k<rw.length&&qw[ps[a]+k]===rw[i+k])k++;if(k>best)best=k;}
+    if(best>=4){i+=best;}else{out.push(rw[i]);i++;}
+  }
+  return out;
+}
+function ehTranscrita(txt,n,j){
+  var w=normTxt(txt).split(' ').filter(function(x){return x;});
+  if(w.length<5)return false;
+  if(j)w=tiraCitacao(w,QTXT[n-1][j-1]);
+  if(w.length<5)return false;
+  var r=analisaRuns(w,TXTN[n-1]);
+  return r.maxRun>=8||(w.length>=8&&r.cob/r.n>0.6);
+}
+function normaliza(d){d=d||{};if(!d.resp)d.resp={};if(!d.feito)d.feito={};if(!d.auto)d.auto={};
+  if(!d.chk)d.chk={};if(!d.tentou)d.tentou={};if(!d.transcrita)d.transcrita={};return d;}
+var S=normaliza(ler());
+function escapa(s){return (s||'').replace(/</g,'&lt;');}
+function statusBloco(n){
+  var rev=false,total=0,sim=0;
+  for(var j=1;j<=3;j++){
+    var k=n+'-'+j;
+    if(S.transcrita[k])rev=true;
+    var pts=PONTOS[n-1][j-1],c=S.chk[k]||[];
+    for(var p=0;p<pts.length;p++){total++;if(c[p]===0)rev=true;if(c[p]===1)sim++;}
+  }
+  if(rev)return 'rev'; if(total&&sim===total)return 'ok'; return '';
+}
+function render(){
+  var alvo=document.getElementById('blocos'); alvo.innerHTML='';
+  BLOCOS.forEach(function(b,i){
+    var liberado=(i===0)||S.feito[b.n-1];
+    var feito=!!S.feito[b.n];
+    var sec=document.createElement('section');
+    sec.className='bloco'+(liberado?'':' trancado');
+    var perg='';
+    b.q.forEach(function(qt,j){
+      var k=b.n+'-'+(j+1), v=escapa(S.resp[k]), verm=!!S.transcrita[k];
+      var ro=(feito&&!verm)?'readonly':'';
+      perg+='<div class="pergunta"><label for="t'+k+'">'+(j+1)+'. '+qt+'</label>'+
+        '<textarea id="t'+k+'" data-b="'+b.n+'" data-q="'+(j+1)+'" class="'+(verm?'verm':'')+'" '+ro+'>'+v+'</textarea>'+
+        (verm?'<p class="avVerm">🔴 Esta resposta ainda está igual ao texto do bloco — reescreva com as SUAS palavras.</p>':'')+
+        '</div>';
+    });
+    var mod='';
+    b.a.forEach(function(at,j){
+      var k=b.n+'-'+(j+1), pts=PONTOS[b.n-1][j], chk=S.chk[k]||[], linhas='';
+      pts.forEach(function(pt,pi){
+        var vv=chk[pi];
+        linhas+='<div class="ponto"><span>'+pt+'</span><span class="pbts">'+
+          '<button class="btChk '+(vv===1?'on':'')+'" data-k="'+k+'" data-p="'+pi+'" data-v="1">Sim</button>'+
+          '<button class="btChk nao '+(vv===0?'on':'')+'" data-k="'+k+'" data-p="'+pi+'" data-v="0">Não</button></span></div>';
+      });
+      mod+='<div class="mQ"><p class="mResp"><b>'+(j+1)+'.</b> '+at+'</p>'+
+           '<div class="chkbox"><p class="chkTit">✅ Minha resposta disse que…</p>'+linhas+'</div></div>';
+    });
+    var st=feito?statusBloco(b.n):'';
+    var selo=st==='ok'?'<span class="selo-ok">✅ Bloco ok</span>':st==='rev'?'<span class="selo-rev">🔁 Para revisar</span>':'';
+    sec.innerHTML='<div class="cab"><span class="num">'+b.rot+'</span><h2>'+b.t+'</h2><span class="pag">'+b.pg+'</span></div>'+
+      (liberado?
+        '<div class="corpo">'+b.html+'</div>'+
+        '<div class="perguntas"><h3>✍️ Escreva com suas palavras — 3 perguntas</h3>'+perg+
+        '<p class="aviso" id="av'+b.n+'"></p>'+
+        '<button class="principal btConferir" data-b="'+b.n+'" '+(feito?'disabled':'')+'>✔️ Conferir</button></div>'+
+        '<div class="modelo" style="display:'+(feito?'block':'none')+'" id="mod'+b.n+'">'+
+          '<h4>Resposta modelo — compare ponto a ponto</h4>'+mod+
+          '<div class="auto">'+selo+'</div></div>'
+      : '<div class="cadeado">🔒 Este painel abre depois que você conferir o anterior.</div>');
+    alvo.appendChild(sec);
+  });
+  ligar(); progresso(); renderRevisar();
+}
+function renderRevisar(){
+  var box=document.getElementById('revisarBox');
+  var itens=[];
+  BLOCOS.forEach(function(b){
+    if(!S.feito[b.n])return;
+    for(var j=1;j<=3;j++){
+      var k=b.n+'-'+j;
+      if(S.transcrita[k])itens.push('<b>'+b.rot+'</b>, pergunta '+j+': resposta igual ao texto — reescrever com as suas palavras.');
+      var pts=PONTOS[b.n-1][j-1],c=S.chk[k]||[];
+      for(var p=0;p<pts.length;p++){if(c[p]===0)itens.push('<b>'+b.rot+'</b>, pergunta '+j+': faltou dizer — “'+pts[p]+'”.');}
+    }
+  });
+  if(!itens.length){box.style.display='none';return;}
+  box.style.display='block';
+  var h='<h2>🔁 Para revisar antes da prova</h2><ul>';
+  itens.forEach(function(t){h+='<li>'+t+'</li>';});
+  box.innerHTML=h+'</ul>';
+}
+function ligar(){
+  document.querySelectorAll('textarea').forEach(function(t){
+    t.addEventListener('input',function(){
+      var k=t.dataset.b+'-'+t.dataset.q;
+      S.resp[k]=t.value;
+      if(S.transcrita[k]&&!ehTranscrita(t.value,parseInt(t.dataset.b,10),parseInt(t.dataset.q,10))){
+        delete S.transcrita[k]; gravar(S); render();
+        var nt=document.getElementById('t'+k);
+        if(nt){nt.focus();try{nt.selectionStart=nt.selectionEnd=nt.value.length;}catch(e){}}
+        return;
+      }
+      gravar(S);
+    });
+  });
+  document.querySelectorAll('.btConferir').forEach(function(bt){
+    bt.addEventListener('click',function(){
+      var n=parseInt(bt.dataset.b,10),vazio=false,j;
+      for(j=1;j<=3;j++){if((S.resp[n+'-'+j]||'').trim().length<3)vazio=true;}
+      var av=document.getElementById('av'+n);
+      if(vazio){av.textContent='⚠️ Responda as 3 perguntas (pelo menos 3 letras em cada) antes de conferir.';return;}
+      var primeira=[],naoMudou=[];
+      for(var j2=1;j2<=3;j2++){
+        var k=n+'-'+j2,v2=S.resp[k]||'';
+        if(ehTranscrita(v2,n,j2)){
+          if(S.tentou[k]===undefined){S.tentou[k]=v2;primeira.push(j2);}
+          else if(v2===S.tentou[k]){naoMudou.push(j2);}
+          else{S.transcrita[k]=true;}
+        }else if(S.transcrita[k]){delete S.transcrita[k];}
+      }
+      if(primeira.length||naoMudou.length){
+        gravar(S);
+        var m='🟡 ';
+        if(primeira.length)m+='Pergunta'+(primeira.length>1?'s':'')+' '+primeira.join(', ')+': boa parte da resposta está igual ao texto do bloco. Tente explicar como se fosse para um amigo, sem olhar o texto — pode ficar mais curto e simples, o que vale é ser SEU. Depois clique em Conferir de novo. ';
+        if(naoMudou.length)m+='Pergunta'+(naoMudou.length>1?'s':'')+' '+naoMudou.join(', ')+': você ainda não mudou a resposta — altere e clique em Conferir de novo.';
+        av.textContent=m; return;
+      }
+      av.textContent=''; S.feito[n]=true; gravar(S); render();
+      var el2=document.getElementById('mod'+n); if(el2)el2.scrollIntoView({behavior:'smooth',block:'center'});
+    });
+  });
+  document.querySelectorAll('.btChk').forEach(function(bt){
+    bt.addEventListener('click',function(){
+      var k=bt.dataset.k;
+      if(!S.chk[k])S.chk[k]=[];
+      S.chk[k][parseInt(bt.dataset.p,10)]=parseInt(bt.dataset.v,10);
+      var n=parseInt(k.split('-')[0],10), st=statusBloco(n); if(st)S.auto[n]=st;
+      gravar(S); render();
+    });
+  });
+}
+function progresso(){
+  var c=0; BLOCOS.forEach(function(b){if(S.feito[b.n])c++;});
+  document.getElementById('barra').style.width=(c/BLOCOS.length*100)+'%';
+  document.getElementById('txtProg').textContent='Painel '+c+' de '+BLOCOS.length+' concluído'+(c===BLOCOS.length?' — mosaico completo! 🎉':'.');
+}
+ligarPainel(); render(); carimbo();
+</script>
+</body></html>
